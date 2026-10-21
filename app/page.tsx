@@ -1,5 +1,6 @@
 import Reveal from "./reveal";
 import DemoStatCounter from "./demo-stat-counter";
+import ChannelPerformanceChart from "./channel-performance-chart";
 
 const stories = [
   {
@@ -268,6 +269,10 @@ export default function Home() {
                 </Reveal>
               ))}
             </div>
+
+            <Reveal delay={120}>
+              <ChannelPerformanceChart />
+            </Reveal>
           </div>
         </section>
 
