@@ -340,28 +340,22 @@ export default function Home() {
               <p className="vkedup-secondary mt-3 text-sm leading-6">Short ideas, useful insights, and stories from VKEDUP.</p>
             </Reveal>
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {reels.map((reel, index) => (
-                <Reveal
-                  key={reel.url}
-                  className={index === 0 ? "sm:col-span-2" : ""}
-                  delay={index * 90}
-                >
+                <Reveal key={reel.url} delay={index * 90}>
                   <a
                     href={reel.url}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`${reel.title}. Opens the Instagram Reel in a new tab.`}
-                    className={`vkedup-card vkedup-reel-card group flex h-full w-full overflow-hidden border ${index === 0 ? "vkedup-reel-card--featured" : "flex-col"}`}
+                    className="vkedup-card vkedup-reel-card group w-full overflow-hidden border"
                   >
-                    <span className={`vkedup-reel-preview self-start ${index === 0 ? "vkedup-reel-preview--featured" : ""}`}>
+                    <span className="vkedup-reel-preview">
                       <Image
                         src={reel.image}
                         alt={`Instagram Reel preview: ${reel.title}`}
                         fill
-                        sizes={index === 0
-                          ? "(max-width: 640px) 42vw, (max-width: 1024px) 35vw, 260px"
-                          : "(max-width: 640px) 90vw, (max-width: 1024px) 42vw, 25vw"}
+                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 42vw, 30vw"
                         className="vkedup-reel-image"
                       />
                       <span className="vkedup-reel-preview-top">VKEDUP <span>·</span> INSTAGRAM</span>

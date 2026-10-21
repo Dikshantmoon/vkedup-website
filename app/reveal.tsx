@@ -31,13 +31,13 @@ export default function Reveal({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          element.classList.add("is-visible");
-          element.classList.remove("is-pending");
-        } else {
-          element.classList.remove("is-visible");
-          element.classList.add("is-pending");
+        if (!entry.isIntersecting || element.classList.contains("is-visible")) {
+          return;
         }
+
+        element.classList.add("is-visible");
+        element.classList.remove("is-pending");
+        observer.disconnect();
       },
       { threshold: 0.08, rootMargin: "-8% 0px -8% 0px" },
     );

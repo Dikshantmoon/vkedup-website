@@ -31,6 +31,7 @@ export default function DemoStatCounter({
     const duration = 1300;
     let frameId = 0;
     let isInView = false;
+    let hasAnimated = false;
 
     const cancelAnimation = () => {
       window.cancelAnimationFrame(frameId);
@@ -42,6 +43,11 @@ export default function DemoStatCounter({
     };
 
     const animate = () => {
+      if (hasAnimated) {
+        return;
+      }
+
+      hasAnimated = true;
       cancelAnimation();
       if (reducedMotion.matches) {
         showFinalValue();
@@ -71,24 +77,21 @@ export default function DemoStatCounter({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        isInView = entry.isIntersecting;
-        if (isInView) {
-          animate();
-        } else if (!reducedMotion.matches) {
-          cancelAnimation();
-          numberElement.textContent = formatValue(0);
-        } else {
-          showFinalValue();
+        if (!entry.isIntersecting) {
+          return;
         }
+
+        isInView = true;
+        animate();
+        observer.disconnect();
       },
       { threshold: 0.15, rootMargin: "-8% 0px -8% 0px" },
     );
 
     const handleMotionPreference = () => {
-      if (reducedMotion.matches) {
+      if (reducedMotion.matches && isInView) {
+        hasAnimated = true;
         showFinalValue();
-      } else if (isInView) {
-        animate();
       }
     };
 
