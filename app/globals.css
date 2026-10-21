@@ -74,6 +74,45 @@ iframe:focus-visible {
   box-shadow: 0 18px 48px rgb(38 56 130 / 24%);
 }
 
+.vkedup-stat-card {
+  transition:
+    transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.vkedup-stat-arrow {
+  transition:
+    color 280ms ease,
+    transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.vkedup-stat-value {
+  transform-origin: left center;
+  transition:
+    color 280ms ease,
+    transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vkedup-stat-card:hover {
+    transform: translate3d(0, -4px, 0) scale(1.015);
+    border-color: rgb(120 149 255 / 55%);
+    box-shadow: 0 16px 44px rgb(38 56 130 / 24%);
+  }
+
+  .vkedup-stat-card:hover .vkedup-stat-arrow {
+    color: #a8baff;
+    transform: translate3d(3px, -3px, 0);
+  }
+
+  .vkedup-stat-card:hover .vkedup-stat-value {
+    color: #c8d2ff;
+    transform: scale(1.04);
+  }
+}
+
 .vkedup-orbit {
   animation: vkedup-orbit 14s ease-in-out infinite;
 }
@@ -135,6 +174,14 @@ iframe:focus-visible {
 
   .vkedup-card,
   .vkedup-card:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .vkedup-stat-card,
+  .vkedup-stat-card:hover,
+  .vkedup-stat-arrow,
+  .vkedup-stat-value {
     transform: none;
     transition: none;
   }

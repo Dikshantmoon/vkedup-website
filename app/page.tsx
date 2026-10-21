@@ -1,4 +1,5 @@
 import Reveal from "./reveal";
+import DemoStatCounter from "./demo-stat-counter";
 
 const stories = [
   {
@@ -43,6 +44,21 @@ const reels = [
   { url: "https://www.instagram.com/reel/DT8FuCgCNcB/", title: "Watch Reel 1" },
   { url: "https://www.instagram.com/reel/DTLWUIUk6P8/", title: "Watch Reel 2" },
   { url: "https://www.instagram.com/reel/DcJXU1MhX4N/", title: "Watch Reel 3" },
+];
+
+type DemoStat = {
+  label: string;
+  value: number;
+  divisor?: number;
+  decimals?: number;
+  suffix?: string;
+};
+
+const demoStats: DemoStat[] = [
+  { label: "Subscribers", value: 12800, divisor: 1000, decimals: 1, suffix: "K" },
+  { label: "Demo views", value: 845000, divisor: 1000, decimals: 0, suffix: "K" },
+  { label: "Videos published", value: 156 },
+  { label: "Engagement score", value: 92 },
 ];
 
 export default function Home() {
@@ -201,6 +217,58 @@ export default function Home() {
             </div>
             <a href="https://www.youtube.com/@Vkedup" target="_blank" rel="noreferrer" className="inline-flex w-fit shrink-0 rounded-full bg-[#7895FF] px-6 py-3.5 font-bold text-[#101114] transition duration-300 hover:-translate-y-1 hover:bg-white">Visit YouTube ↗</a>
           </Reveal>
+        </section>
+
+        {/* Illustrative demo values, not live YouTube analytics */}
+        <section
+          aria-labelledby="channel-stats-title"
+          className="border-b border-white/10 bg-[#101114]"
+        >
+          <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+            <Reveal className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#A8BAFF]">
+                  CHANNEL SNAPSHOT
+                </p>
+                <h2
+                  id="channel-stats-title"
+                  className="mt-3 text-3xl font-black sm:text-4xl"
+                >
+                  YouTube demo statistics<span className="text-[#A8BAFF]">.</span>
+                </h2>
+              </div>
+              <p className="max-w-md text-sm leading-6 text-white/55">
+                Illustrative figures for design purposes only. These are not
+                real-time or verified YouTube analytics.
+              </p>
+            </Reveal>
+
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+              {demoStats.map((stat, index) => (
+                <Reveal key={stat.label} delay={index * 80}>
+                  <article className="vkedup-stat-card group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#1C1F29] to-[#141519] p-5 sm:p-6">
+                    <span className="vkedup-stat-arrow absolute right-5 top-5 text-lg text-[#A8BAFF]/65 sm:right-6 sm:top-6">
+                      ↗
+                    </span>
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50 sm:text-sm">
+                      {stat.label}
+                    </p>
+                    <p className="vkedup-stat-value mt-6 text-3xl font-black tracking-tight text-white sm:mt-8 sm:text-4xl">
+                      <DemoStatCounter
+                        value={stat.value}
+                        divisor={stat.divisor}
+                        decimals={stat.decimals}
+                        suffix={stat.suffix}
+                      />
+                    </p>
+                    <p className="mt-2 text-xs font-medium text-[#A8BAFF]/75">
+                      Illustrative demo
+                    </p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* YouTube Shorts: embedded videos with an external fallback link */}
