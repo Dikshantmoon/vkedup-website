@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #101114;
+  --foreground: #f5f5f7;
 }
 
 @theme inline {
@@ -12,15 +12,139 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: #7895ff;
+  color: #101114;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+iframe:focus-visible {
+  outline: 2px solid #a8baff;
+  outline-offset: 4px;
+}
+
+.vkedup-reveal {
+  transition:
+    opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+.vkedup-reveal.is-pending:not(.is-visible) {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  pointer-events: none;
+}
+
+.vkedup-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto;
+}
+
+.vkedup-card {
+  transition:
+    transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.vkedup-card:hover {
+  transform: translate3d(0, -5px, 0) scale(1.015);
+  border-color: rgb(120 149 255 / 55%);
+  box-shadow: 0 18px 48px rgb(38 56 130 / 24%);
+}
+
+.vkedup-card:focus-within {
+  border-color: rgb(120 149 255 / 55%);
+  box-shadow: 0 18px 48px rgb(38 56 130 / 24%);
+}
+
+.vkedup-orbit {
+  animation: vkedup-orbit 14s ease-in-out infinite;
+}
+
+@keyframes vkedup-orbit {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-14px, 12px, 0) scale(1.04);
+  }
+}
+
+.vkedup-parallax {
+  will-change: transform;
+}
+
+@supports (animation-timeline: scroll()) {
+  .vkedup-parallax {
+    animation: vkedup-parallax linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0px 600px;
+  }
+
+  @keyframes vkedup-parallax {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+      transform: translate3d(0, -18px, 0) scale(1.035);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .vkedup-reveal,
+  .vkedup-reveal.is-pending:not(.is-visible),
+  .vkedup-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .vkedup-orbit {
+    animation: none;
+  }
+
+  .vkedup-parallax {
+    animation: none;
+    will-change: auto;
+  }
+
+  .vkedup-card,
+  .vkedup-card:hover {
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
