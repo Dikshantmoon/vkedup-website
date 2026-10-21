@@ -1,6 +1,7 @@
 import Reveal from "./reveal";
 import DemoStatCounter from "./demo-stat-counter";
 import ChannelPerformanceChart from "./channel-performance-chart";
+import Image from "next/image";
 
 const stories = [
   {
@@ -39,9 +40,21 @@ const shorts = [
 ];
 
 const reels = [
-  { url: "https://www.instagram.com/reel/DT8FuCgCNcB/", title: "Watch Reel 1" },
-  { url: "https://www.instagram.com/reel/DTLWUIUk6P8/", title: "Watch Reel 2" },
-  { url: "https://www.instagram.com/reel/DcJXU1MhX4N/", title: "Watch Reel 3" },
+  {
+    url: "https://www.instagram.com/reel/DT8FuCgCNcB/",
+    title: "From Helping Farmers to 100 Cr Brand",
+    image: "/images/reels/reel-1.jpg",
+  },
+  {
+    url: "https://www.instagram.com/reel/DTLWUIUk6P8/",
+    title: "Side Effects with Famous Medicine Brand",
+    image: "/images/reels/reel-2.jpg",
+  },
+  {
+    url: "https://www.instagram.com/reel/DcJXU1MhX4N/",
+    title: "How This Founder Made an 80 Crore Gym Gadget Brand",
+    image: "/images/reels/reel-3.jpg",
+  },
 ];
 
 type DemoStat = {
@@ -190,13 +203,21 @@ export default function Home() {
 
         {/* About */}
         <section id="about" className="vkedup-about scroll-mt-24 border-b">
-          <Reveal className="mx-auto grid max-w-7xl gap-8 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2 lg:items-center">
+          <Reveal className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-28 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-center lg:gap-16">
+            <div className="vkedup-profile-frame mx-auto aspect-square w-full max-w-[18rem] overflow-hidden rounded-full">
+              <Image
+                src="/images/vkedup-profile.png"
+                alt="VKEDUP profile portrait"
+                width={440}
+                height={440}
+                sizes="(max-width: 768px) 72vw, 288px"
+                className="h-full w-full object-cover"
+              />
+            </div>
             <div>
               <p className="vkedup-eyebrow text-xs font-bold tracking-[0.24em]">THE IDEA BEHIND VKEDUP</p>
               <h2 className="vkedup-display mt-5 text-4xl font-black leading-tight sm:text-5xl">Business is easier to understand when stories explain it.</h2>
-            </div>
-            <div className="vkedup-about-copy lg:border-l lg:pl-12">
-              <p className="vkedup-secondary text-base leading-8">
+              <p className="vkedup-secondary mt-6 text-base leading-8">
                 VKEDUP makes business concepts approachable through company stories, startup journeys, and practical lessons. The goal is simple: learn how businesses work, one story at a time.
               </p>
               <a href="#shorts" className="vkedup-button vkedup-button--text mt-7 inline-flex border px-6 py-3 font-semibold transition duration-300">Explore the content ↗</a>
@@ -319,19 +340,46 @@ export default function Home() {
               <p className="vkedup-secondary mt-3 text-sm leading-6">Short ideas, useful insights, and stories from VKEDUP.</p>
             </Reveal>
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {reels.map((reel, index) => (
-                <Reveal key={reel.url} delay={index * 90}>
+                <Reveal
+                  key={reel.url}
+                  className={index === 0 ? "sm:col-span-2" : ""}
+                  delay={index * 90}
+                >
                   <a
                     href={reel.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="vkedup-card vkedup-reel-card group block h-full border p-6"
+                    aria-label={`${reel.title}. Opens the Instagram Reel in a new tab.`}
+                    className={`vkedup-card vkedup-reel-card group flex h-full w-full overflow-hidden border ${index === 0 ? "vkedup-reel-card--featured" : "flex-col"}`}
                   >
-                    <span className="vkedup-reel-label inline-flex px-3 py-1 text-xs font-bold">VKEDUP · INSTAGRAM</span>
-                    <h3 className="vkedup-display mt-5 text-xl font-bold">{reel.title}</h3>
-                    <p className="vkedup-secondary mt-2 text-sm">Explore the latest stories and ideas.</p>
-                    <p className="vkedup-inline-link mt-5 text-sm font-bold transition group-hover:translate-x-1">Watch Reel ↗</p>
+                    <span className={`vkedup-reel-preview self-start ${index === 0 ? "vkedup-reel-preview--featured" : ""}`}>
+                      <Image
+                        src={reel.image}
+                        alt={`Instagram Reel preview: ${reel.title}`}
+                        fill
+                        sizes={index === 0
+                          ? "(max-width: 640px) 42vw, (max-width: 1024px) 35vw, 260px"
+                          : "(max-width: 640px) 90vw, (max-width: 1024px) 42vw, 25vw"}
+                        className="vkedup-reel-image"
+                      />
+                      <span className="vkedup-reel-preview-top">VKEDUP <span>·</span> INSTAGRAM</span>
+                      <span className="vkedup-reel-preview-bottom">
+                        {index === 0 ? "FEATURED REEL" : "OPEN REEL"}
+                      </span>
+                      <span className="vkedup-reel-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false">
+                          <path d="M9 6.75v10.5L17 12 9 6.75Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                    </span>
+                    <span className="vkedup-reel-copy">
+                      <span className="vkedup-reel-label inline-flex px-3 py-1 text-xs font-bold">VKEDUP · INSTAGRAM</span>
+                      <span className="vkedup-display mt-5 block text-xl font-bold">{reel.title}</span>
+                      <span className="vkedup-secondary mt-2 block text-sm">Open this Reel on Instagram.</span>
+                      <span className="vkedup-inline-link mt-5 block text-sm font-bold transition group-hover:translate-x-1">Watch Reel ↗</span>
+                    </span>
                   </a>
                 </Reveal>
               ))}
