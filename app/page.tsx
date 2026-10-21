@@ -286,7 +286,7 @@ export default function Home() {
           </a>
         </div>
         <div className="mt-8 border-t border-white/10 pt-6 text-xs text-white/35">
-          © {new Date().getFullYear()} VKEDUP. Built for curious minds.
+          © 2026 VKEDUP. Built for curious minds.
         </div>
       </footer>
     </main>
