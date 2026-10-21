@@ -21,17 +21,17 @@ export default function ChannelPerformanceChart() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <div className="vkedup-chart-panel mt-8 rounded-3xl border border-white/10 bg-gradient-to-br from-[#1C1F29] to-[#121318] p-5 shadow-2xl shadow-black/20 sm:p-8">
+    <div className="vkedup-chart-panel mt-8 border p-5 sm:p-8">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#A8BAFF]">
+          <p className="vkedup-chart-metric text-xs font-bold uppercase tracking-[0.2em]">
             Views over time
           </p>
-          <h3 className="mt-2 text-2xl font-black tracking-tight text-white sm:text-3xl">
+          <h3 className="vkedup-chart-title mt-2 text-2xl font-black tracking-tight sm:text-3xl">
             Channel Performance
           </h3>
         </div>
-        <span className="w-fit rounded-full border border-[#A8BAFF]/25 bg-[#7895FF]/10 px-3 py-1.5 text-[10px] font-bold tracking-[0.18em] text-[#B7C5FF]">
+        <span className="vkedup-chart-demo w-fit border px-3 py-1.5 text-[10px] font-bold tracking-[0.18em]">
           DEMO DATA
         </span>
       </div>
@@ -86,10 +86,10 @@ export default function ChannelPerformanceChart() {
                   data-visible={isActive}
                   role="tooltip"
                 >
-                  <span className="block text-[10px] font-medium text-white/60">
+                  <span className="vkedup-chart-tooltip-period block text-[10px] font-medium">
                     {item.period}
                   </span>
-                  <span className="mt-0.5 block whitespace-nowrap text-xs font-bold text-white">
+                  <span className="vkedup-chart-tooltip-value mt-0.5 block whitespace-nowrap text-xs font-bold">
                     {formatViews(item.views)}
                   </span>
                 </span>
@@ -103,14 +103,14 @@ export default function ChannelPerformanceChart() {
         {channelPerformanceDemoData.map((item) => (
           <span
             key={item.period}
-            className="truncate text-center text-[10px] text-white/45 sm:text-xs"
+            className="vkedup-chart-axis truncate text-center text-[10px] sm:text-xs"
           >
             {item.period}
           </span>
         ))}
       </div>
 
-      <p className="mt-6 text-xs leading-5 text-white/45">
+      <p className="vkedup-chart-disclaimer mt-6 text-xs leading-5">
         Illustrative demo data only. Real YouTube analytics will be integrated
         later.
       </p>
