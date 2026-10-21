@@ -268,6 +268,132 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="shorts" className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ff713b]">
+              Watch & Learn
+            </p>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">
+              YouTube Shorts<span className="text-[#ff713b]">.</span>
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/60">
+              Quick business lessons, startup stories, and ideas worth sharing.
+            </p>
+          </div>
+
+          <a
+            href="https://www.youtube.com/@Vkedup"
+            target="_blank"
+            rel="noreferrer"
+            className="w-fit rounded-full bg-[#ff713b] px-5 py-3 text-sm font-bold text-black transition hover:bg-orange-300"
+          >
+            Visit YouTube ↗
+          </a>
+        </div>
+
+        <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {shorts.map((short) => (
+            <a
+              key={short.id}
+              href={`https://www.youtube.com/shorts/${short.id}`}
+              target="_blank"
+              rel="noreferrer"
+              className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition hover:-translate-y-1 hover:border-[#ff713b]/60"
+            >
+              <div className="relative aspect-[9/12] overflow-hidden bg-[#191919]">
+                <img
+                  src={`https://img.youtube.com/vi/${short.id}/hqdefault.jpg`}
+                  alt={short.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/10 transition group-hover:bg-black/30">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#ff713b] text-xl text-black shadow-lg">
+                    ▶
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-3 p-4">
+                <div>
+                  <h3 className="font-bold">{short.title}</h3>
+                  <p className="mt-1 text-xs text-white/50">VKEDUP · YouTube Shorts</p>
+                </div>
+                <span className="text-[#ff713b]">↗</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+
+      <section id="instagram" className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ff713b]">
+              Behind the Stories
+            </p>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">
+              Instagram Reels<span className="text-[#ff713b]">.</span>
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/60">
+              More ideas, quick insights, and moments from VKEDUP.
+            </p>
+          </div>
+
+          <a
+            href="https://www.instagram.com/vked.up/"
+            target="_blank"
+            rel="noreferrer"
+            className="w-fit rounded-full bg-[#ff713b] px-5 py-3 text-sm font-bold text-black transition hover:bg-orange-300"
+          >
+            Visit Instagram ↗
+          </a>
+        </div>
+
+        <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              url: "https://www.instagram.com/reel/DT8FuCgCNcB/",
+              title: "Watch Reel 1",
+            },
+            {
+              url: "https://www.instagram.com/reel/DTLWUIUk6P8/",
+              title: "Watch Reel 2",
+            },
+            {
+              url: "https://www.instagram.com/reel/DcJXU1MhX4N/",
+              title: "Watch Reel 3",
+            },
+          ].map((reel) => (
+            <a
+              key={reel.url}
+              href={reel.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex min-h-56 flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-[#ff713b]/60"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ff713b]/15 text-2xl text-[#ff713b]">
+                ◎
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-[#ff713b]">
+                  VKEDUP · Instagram
+                </p>
+                <h3 className="mt-2 text-xl font-bold">{reel.title}</h3>
+                <p className="mt-2 text-sm text-white/50">
+                  Watch the original Reel on Instagram
+                </p>
+              </div>
+              <span className="mt-5 text-sm font-bold text-[#ff713b]">
+                Watch Reel ↗
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <footer id="contact" className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <a href="#" className="text-xl font-black">
