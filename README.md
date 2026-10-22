@@ -20,6 +20,12 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact enquiries
+
+The contact form does not deliver messages until a submission endpoint is configured. Set `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT` to an HTTPS endpoint that accepts a JSON `POST` containing `name`, `email`, `company`, `service`, and `details`, and returns a successful `2xx` response. For a third-party endpoint, configure CORS to allow this site. The endpoint should validate submissions and apply suitable abuse protection; the browser form's validation is not a substitute for server-side validation.
+
+Set `WHATSAPP_BUSINESS_NUMBER` in `app/site-config.ts` to the business number in international format using digits only, including the country code (remove the `+`, spaces, and punctuation). The current value is an unconfigured placeholder.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

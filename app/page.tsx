@@ -1,6 +1,7 @@
 import Reveal from "./reveal";
 import DemoStatCounter from "./demo-stat-counter";
 import ChannelPerformanceChart from "./channel-performance-chart";
+import ContactForm from "./contact-form";
 import Image from "next/image";
 
 const stories = [
@@ -383,8 +384,38 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Contact */}
+        <section
+          id="contact"
+          aria-labelledby="contact-title"
+          className="vkedup-contact scroll-mt-24 border-t"
+        >
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <div className="lg:sticky lg:top-32 lg:self-start">
+              <p className="vkedup-eyebrow text-xs font-bold uppercase tracking-[0.24em]">
+                LET&apos;S CONNECT
+              </p>
+              <h2
+                className="vkedup-display mt-4 text-4xl font-black sm:text-5xl"
+                id="contact-title"
+              >
+                Have a story to tell?
+              </h2>
+              <p className="vkedup-secondary mt-5 max-w-md leading-7">
+                Share what you are building and what you have in mind. We&apos;ll
+                explore how VKEDUP can help bring your business story to life.
+              </p>
+              <p className="vkedup-contact-note mt-8 border-l pl-4 text-sm leading-6">
+                Prefer a quick conversation? Send an enquiry directly on
+                WhatsApp using the details you enter in the form.
+              </p>
+            </div>
+            <ContactForm />
+          </div>
+        </section>
+
         {/* Footer */}
-        <footer id="contact" className="vkedup-footer border-t px-5 py-10 sm:px-8">
+        <footer className="vkedup-footer border-t px-5 py-10 sm:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <a href="#" className="vkedup-wordmark text-xl font-black">VKEDUP<span>.</span></a>
